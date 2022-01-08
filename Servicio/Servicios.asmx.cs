@@ -28,5 +28,12 @@ namespace Servicio
         {
             return "Hola " + nombre;
         }
+
+        [WebMethod]
+        public string GuardarLog(string mensaje)
+        {
+            Funciones.Logs("LogServicio", mensaje);
+            return "OK";
+        }
     }
 }
