@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 
@@ -14,6 +15,19 @@ namespace Servicio
                 DateTime.Now.Month.ToString() + "/" +
                 DateTime.Now.Day.ToString();
 
+            //Validamos si el directorio existe
+            if (!Directory.Exists(directorio))
+            {
+                Directory.CreateDirectory(directorio);
+            }
+
+            //Para trabajar con archivos
+            StreamWriter mi_archivo = new StreamWriter(directorio+"/"+nombre_archivo+".txt", true);
+
+            string cadena = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")+" >>> "+descripcion;
+
+            mi_archivo.WriteLine(cadena);
+            mi_archivo.Close();
         }
     }
 }
